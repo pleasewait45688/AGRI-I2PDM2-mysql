@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:8.0.18
+    container_name: pest_db_v1
+    restart: always
+    env_file: ".env"
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql8/data:/var/lib/mysql
+      - ./mysql8/log:/var/log/mysql
+      - ./mysql8/conf.d:/etc/mysql/conf.d
+    networks:
+      - pest_app_network
+
+networks:
+  pest_app_network:
+    external: true  
